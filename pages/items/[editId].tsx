@@ -4,16 +4,20 @@ import Link from "next/link";
 import React, { useState } from "react";
 
 import { items } from "../../utils/fake-data";
+import { useData } from "../../contexts/DataContext";
 
 const ItemList: NextPage = () => {
+  const data: object[] = useData();
+  console.log(data);
+
   const router = useRouter();
 
   let itemId = router.query.editId;
 
-  const itemContent: string = items[Number(itemId)]["content"];
-  const itemDueDate: string = items[Number(itemId)]["dueDate"];
+  // const itemContent: string = data[Number(itemId)]["content"];
+  // const itemDueDate: string = items[Number(itemId)]["dueDate"];
 
-  const [newItem, setNewItem] = useState(itemContent);
+  const [newItem, setNewItem] = useState("itemContent");
   const [submitting, setSubmitting] = useState(false);
 
   let submitNewItem: (event: React.FormEvent<HTMLFormElement>) => void;
@@ -39,7 +43,7 @@ const ItemList: NextPage = () => {
           type="text"
           placeholder="Enter task"
           onChange={(e) => setNewItem(e.target.value)}
-          value={itemContent}
+          value={""}
           aria-describedby="enter-task"
         />
 

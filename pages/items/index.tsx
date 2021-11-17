@@ -1,10 +1,15 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 import React, { useState } from "react";
+import { useData } from "../../contexts/DataContext";
 
 import { items } from "../../utils/fake-data";
 
 const ItemList: NextPage = () => {
+  const data: object[] = useData();
+
+  console.log(data);
+
   const [newItem, setNewItem] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
@@ -35,6 +40,7 @@ const ItemList: NextPage = () => {
                 type="checkbox"
                 defaultChecked={item.status === "done" ? true : false}
               />
+              <input type="date" data-date-inline-picker="true" />
               <Link href={`/items/${id}`}>
                 <button type="button">Edit</button>
               </Link>
