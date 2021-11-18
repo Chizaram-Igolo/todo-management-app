@@ -40,7 +40,6 @@ const ItemList: NextPage = () => {
                 type="checkbox"
                 defaultChecked={item.status === "done" ? true : false}
               />
-              <input type="date" data-date-inline-picker="true" />
               <Link href={`/items/${id}`}>
                 <button type="button">Edit</button>
               </Link>
@@ -57,6 +56,7 @@ const ItemList: NextPage = () => {
           value={newItem}
           aria-describedby="enter-task"
         />
+        <input type="date" data-date-inline-picker="true" />
 
         <button type="submit" disabled={submitting || newItem.length === 0}>
           {submitting ? "Submitting..." : "Add Item"}

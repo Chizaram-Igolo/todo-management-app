@@ -1,6 +1,5 @@
 // Fake data for populating TODO list.
-
-type todoItem = { content: string; dueDate: string; status: string };
+import { todoItem } from "../types/todoItem";
 
 export const items: todoItem[] = [
   { content: "Do laundry", dueDate: "17-11-21", status: "done" },

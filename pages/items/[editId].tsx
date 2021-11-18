@@ -5,17 +5,18 @@ import React, { useState } from "react";
 
 import { items } from "../../utils/fake-data";
 import { useData } from "../../contexts/DataContext";
+import { todoItem } from "../../types/todoItem";
 
 const ItemList: NextPage = () => {
-  const data: object[] = useData();
+  const data: todoItem[] = useData();
   console.log(data);
 
   const router = useRouter();
 
   let itemId = router.query.editId;
 
-  // const itemContent: string = data[Number(itemId)]["content"];
-  // const itemDueDate: string = items[Number(itemId)]["dueDate"];
+  const itemContent: string = data[Number(itemId)]["content"];
+  const itemDueDate: string = items[Number(itemId)]["dueDate"];
 
   const [newItem, setNewItem] = useState("itemContent");
   const [submitting, setSubmitting] = useState(false);
@@ -43,8 +44,14 @@ const ItemList: NextPage = () => {
           type="text"
           placeholder="Enter task"
           onChange={(e) => setNewItem(e.target.value)}
-          value={""}
+          value={itemContent}
           aria-describedby="enter-task"
+        />
+
+        <input
+          type="date"
+          data-date-inline-picker="true"
+          onChange={(e) => console.log(e)}
         />
 
         <button type="submit" disabled={submitting || newItem.length === 0}>
