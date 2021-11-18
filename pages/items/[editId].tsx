@@ -7,7 +7,7 @@ import { items } from "../../utils/fake-data";
 import { useData } from "../../contexts/DataContext";
 import { todoItem } from "../../types/todoItem";
 
-const ItemList: NextPage = () => {
+const EditItemPage: NextPage = () => {
   const data: todoItem[] = useData();
   console.log(data);
 
@@ -66,4 +66,4 @@ const ItemList: NextPage = () => {
   );
 };
 
-export default ItemList;
+export default EditItemPage;

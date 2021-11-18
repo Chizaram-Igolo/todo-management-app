@@ -1,7 +1,8 @@
 import type { NextPage } from "next";
-import Link from "next/link";
 import React, { useState } from "react";
 import { useData } from "../../contexts/DataContext";
+
+import ItemCard from "../../components/elements/ItemCard";
 
 import { items } from "../../utils/fake-data";
 
@@ -34,17 +35,12 @@ const ItemList: NextPage = () => {
       <ul>
         {items.map((item, id) => {
           return (
-            <li key={item + id.toString()}>
-              {item.content} - {item.dueDate} - {item.status}
-              <input
-                type="checkbox"
-                defaultChecked={item.status === "done" ? true : false}
-              />
-              <Link href={`/items/${id}`}>
-                <button type="button">Edit</button>
-              </Link>
-              <button type="button">Delete</button>
-            </li>
+            <ItemCard
+              itemContent={item.content}
+              itemDueDate={item.dueDate}
+              itemStatus={item.status}
+              itemNum={id + 1}
+            />
           );
         })}
       </ul>
