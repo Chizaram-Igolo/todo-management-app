@@ -4,6 +4,7 @@
 2.  How to Start the Application
 3.  Directory Structure
 4.  Security Measures
+5.
 
 ## 1. Checklist
 
@@ -23,11 +24,11 @@
 
 I have structured the folders and named the files to keep as much as I can to the Domain-Driven Design philosophy.
 
-## 4. Security Measures
-
 #### Pages
 
 To keep the directory structure as easy to follow as possible I have separated the 2 pages (item-list and [editId] which is a dynamic route page) into their respective directories and used css modules.
+
+The API routes for performing CRUD operations can be seen here as well.
 
 ```
 📦pages
@@ -64,3 +65,38 @@ Layout concerns like the main navigation and the pages layout are addressed in t
 ┃ ┣ 📜Layout.tsx
 ┃ ┗ 📜MainNav.tsx
 ```
+
+#### types
+
+To help with type-checking and debugging, I have a `todoItem.ts` that exports the type which represents the todo item object. This directory is on the same level as the `pages` and `components` directories.
+
+```
+📦types
+ ┗ 📜todoItem.ts
+```
+
+```
+import { ObjectId } from "mongodb";
+
+export type todoItem = {
+  _id: ObjectId | null;
+  content: string;
+  dueDate: Date | null;
+  status: string;
+};
+```
+
+#### utils
+
+The snippet for connecting to the database is exported from the `connection.ts` file in the `utils` directory for reusability. This directory just like the one mentioned above is on the same level as the `pages` and `components` directories.
+
+📦utils
+┗ 📜connection.ts
+
+## 4. Security Measures
+
+- To prevent Clickjacking and MIME sniffing vulnerabilities, I have include HTTP response headers in `next.config.js` to deny other sources from being able to take advantage of these.
+
+Denying MIME sniffing makes it harder to perform CSRF through malicious file upload.
+
+- The database cluster that this project utilizes is built on AWS infrastructure using MongoDB Atlas.
