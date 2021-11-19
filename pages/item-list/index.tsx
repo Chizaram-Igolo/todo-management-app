@@ -12,18 +12,19 @@ const ItemList: NextPage<ItemListProps> = ({ items }) => {
   return (
     <div>
       <ul>
-        {items.map((itemData, id) => {
-          return (
-            <ItemCard
-              itemContent={itemData.content}
-              itemDueDate={itemData.dueDate}
-              itemStatus={itemData.status}
-              itemId={itemData._id}
-              itemNum={id + 1}
-              key={itemData._id.toString()}
-            />
-          );
-        })}
+        {items &&
+          items.map((itemData, id) => {
+            return (
+              <ItemCard
+                itemContent={itemData.content}
+                itemDueDate={itemData.dueDate}
+                itemStatus={itemData.status}
+                itemId={itemData._id}
+                itemNum={id + 1}
+                key={itemData._id.toString()}
+              />
+            );
+          })}
       </ul>
     </div>
   );
