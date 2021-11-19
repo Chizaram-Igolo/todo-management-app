@@ -17,9 +17,9 @@ Below is a check list which encapsulates the major technical requirements given 
 
 :white_check_mark: Used Material-UI as much as possible
 
-:white_check_mark: Used Docker node:14-buster-slim image to deploy the app
+:white_check_mark: Used Docker node:14-buster-slim image to build app and deploy image
 
-:white_check_mark: Implemented with Security in Mind
+:white_check_mark: Implemented with Security (XSS, CSRF) in Mind
 
 ## 2. How to Start the Application
 

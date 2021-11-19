@@ -7,7 +7,7 @@ const responseHeaders = [
     value: "DENY",
   },
   {
-    // Anti-XSS and Anti-CRSF response header
+    // Anti-XSS and Anti-CSRF response header
     key: "X-Content-Type-Options",
     value: "nosniff",
   },
