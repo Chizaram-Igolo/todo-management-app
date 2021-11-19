@@ -13,10 +13,6 @@ const responseHeaders = [
   },
   {
     // Anti-XSS response headers
-    key: "Content-Security-Policy",
-    value: `default-src 'self'`,
-  },
-  {
     key: "X-XSS-Protection",
     value: "1; mode=block",
   },
