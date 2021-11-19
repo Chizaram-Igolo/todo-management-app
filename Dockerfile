@@ -6,14 +6,14 @@ COPY . .
 
 # Linux + Node + Source + Project dependencies + build assets
 FROM base AS build
-ENV NODE_ENV=production
+ENV NODE_ENV production
 WORKDIR /build
 COPY --from=base /todo ./
 RUN npm run build
 
 # We keep some artifacts from build
 FROM node:14-buster-slim AS production
-ENV NODE_ENV=production
+ENV NODE_ENV production
 WORKDIR /todo
 COPY --from=build /build/package*.json ./
 COPY --from=build /build/.next ./.next

@@ -15,3 +15,15 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.container {
+  padding: 1.8rem 2rem;
+}
+
+.main {
+  min-height: 100vh;
+  /* flex-direction: column;
+  justify-content: center; */
+  margin: 0px auto;
+  width: 80%;
+}

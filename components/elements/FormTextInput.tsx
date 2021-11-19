@@ -1,14 +1,25 @@
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 
-export default function FormTextInput() {
+interface FormTextInputProps {
+  value: string;
+  changeHandler: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+}
+
+const FormTextInput: React.FC<FormTextInputProps> = ({
+  value,
+  changeHandler,
+}) => {
   return (
     <TextField
       error={false}
       id="outlined-error"
       label="Content"
       placeholder="Enter in a new task"
-      defaultValue=""
+      value={value}
+      onChange={changeHandler}
     />
   );
-}
+};
+
+export default FormTextInput;

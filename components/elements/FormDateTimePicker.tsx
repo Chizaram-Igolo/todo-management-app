@@ -1,9 +1,18 @@
 import * as React from "react";
 import TextField from "@mui/material/TextField";
 import DateTimePicker from "@mui/lab/DateTimePicker";
+import { DateTimePickerView } from "@mui/lab/DateTimePicker/shared";
 
-export default function FormDateTimePicker() {
-  const [value, setValue] = React.useState<Date | null>(new Date());
+interface FormDateTimePickerProps {
+  value: Date | null;
+  changeHandler: React.Dispatch<React.SetStateAction<Date | null>>;
+}
+
+const FormDateTimePicker: React.FC<FormDateTimePickerProps> = ({
+  value,
+  changeHandler,
+}) => {
+  console.log(typeof value);
 
   return (
     <DateTimePicker
@@ -11,8 +20,10 @@ export default function FormDateTimePicker() {
       label="Due Date"
       value={value}
       onChange={(newValue) => {
-        setValue(newValue);
+        changeHandler(newValue);
       }}
     />
   );
-}
+};
+
+export default FormDateTimePicker;

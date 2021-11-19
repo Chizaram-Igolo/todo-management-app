@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 
-import * as React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
@@ -11,73 +12,123 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import ItemCheckbox from "./ItemCheckbox";
 
+import Snackbar from "@mui/material/Snackbar";
+
+import { ObjectId } from "bson";
+
 import { makeStyles } from "@mui/styles";
 
-export const useStyles = makeStyles((theme: Theme) => ({
-  root: {
-    maxWidth: 345,
-    margin: "3rem",
+export const useStyles = makeStyles((theme) => ({
+  parentFlex: { display: "flex" },
+  parentFlexLeft: {
+    display: "flex",
+    marginRight: "auto",
   },
-  media: {
-    height: 140,
+  parentFlexRight: {
+    display: "flex",
+    marginLeft: "auto",
   },
 }));
 
 interface ItemCardProps {
   itemNum: number;
+  itemId: ObjectId;
   itemContent: string;
-  itemDueDate: string;
+  itemDueDate: Date;
   itemStatus: string;
 }
 
 const ItemCard: React.FC<ItemCardProps> = ({
   itemNum,
+  itemId,
   itemDueDate,
   itemContent,
   itemStatus,
 }): JSX.Element => {
+  const router = useRouter();
+
   const classes = useStyles();
 
-  return (
-    <Box sx={{ minWidth: "50%", width: "100%" }}>
-      <Card variant="outlined">
-        <React.Fragment>
-          <CardContent>
-            <Typography
-              sx={{ fontSize: 14 }}
-              color="text.secondary"
-              gutterBottom
-            >
-              #{itemNum}
-            </Typography>
-            <Typography variant="h6" component="div">
-              <strong>{itemContent}</strong>
-            </Typography>
-            <Typography sx={{ mb: 0.4 }} color="text.secondary" variant="p">
-              Due by {itemDueDate}
-            </Typography>
-            <ItemCheckbox isChecked={itemStatus === "done" ? true : false} />
-          </CardContent>
+  const [snackOpen, setSnackOpen] = useState(false);
 
-          <CardActions>
-            <Link href={`/items/${itemNum}`}>
+  const handleClose = () => {
+    setSnackOpen(false);
+  };
+
+  const deleteHandler = async () => {
+    const response = await fetch("/api/delete-item", {
+      method: "DELETE",
+      body: JSON.stringify({ itemId: itemId }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (response) {
+      setSnackOpen(true);
+    }
+
+    router.replace("/");
+  };
+
+  return (
+    <Box sx={{ minWidth: "50%" }}>
+      <Card
+        variant="outlined"
+        sx={{ minWidth: 275 }}
+        className={classes.parentFlex}
+      >
+        <CardContent>
+          <Box className={classes.parentFlexLeft}>
+            <ItemCheckbox isChecked={itemStatus === "done" ? true : false} />
+            <Typography sx={{ mt: 1.3 }}>
+              {itemStatus === "done" && (
+                <strong style={{ textDecoration: "line-through" }}>
+                  {itemContent}
+                </strong>
+              )}
+
+              {itemStatus === "unfinished" && <strong>{itemContent}</strong>}
+            </Typography>
+          </Box>
+          <Typography
+            sx={{ mb: 0, fontSize: "14px", ml: 5 }}
+            color="text.secondary"
+          >
+            #{itemNum} • <em>due by</em> {new Date(itemDueDate).toDateString()}
+          </Typography>
+        </CardContent>
+
+        <div></div>
+        <div className={classes.parentFlexRight}>
+          <CardActions sx={{ mt: -1.4, fontSize: "14px" }}>
+            <Link href={`${itemId}`}>
               <Button size="small" variant="outlined" startIcon={<EditIcon />}>
                 Edit
               </Button>
             </Link>
           </CardActions>
-          <CardActions>
+          <CardActions sx={{ mt: -1.4, fontSize: "14px" }}>
             <Button
               size="small"
               variant="outlined"
               color="error"
               startIcon={<DeleteIcon />}
+              onClick={() => deleteHandler()}
             >
               Delete
             </Button>
           </CardActions>
-        </React.Fragment>
+        </div>
       </Card>
+
+      <Snackbar
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        open={snackOpen}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message="Your item was deleted!"
+      />
     </Box>
   );
 };

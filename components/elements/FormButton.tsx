@@ -4,12 +4,27 @@ import Button from "@mui/material/Button";
 
 interface FormButtonProps {
   label: string;
+  color: string;
+  submitting: boolean;
+  compulsoryFieldEmpty: boolean;
 }
 
-const FormButton: React.FC<FormButtonProps> = ({ label }): JSX.Element => {
+const FormButton: React.FC<FormButtonProps> = ({
+  label,
+  color,
+  submitting,
+  compulsoryFieldEmpty,
+}) => {
   return (
     <Stack spacing={2} direction="row">
-      <Button variant="contained">{label}</Button>
+      <Button
+        variant="contained"
+        type="submit"
+        color={color}
+        disabled={submitting || compulsoryFieldEmpty}
+      >
+        {label}
+      </Button>
     </Stack>
   );
 };

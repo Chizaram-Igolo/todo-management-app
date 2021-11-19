@@ -1,34 +1,62 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Table of Contents
 
-## Getting Started
+1.  Checklist
+2.  How to Start the Application
+3.  Directory Structure
+4.  Security Measures
 
-First, run the development server:
+## 1. Checklist
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+:white_check_mark: Used Next.js with SSR
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+:white_check_mark: Used TypeScript without using "any"
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+:white_check_mark: Used Material-UI as much as possible
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+:white_check_mark: Used Docker node:14-buster-slim image to deploy the app
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+:white_check_mark: Used React Context
 
-## Learn More
+## 2. How to Start the Application
 
-To learn more about Next.js, take a look at the following resources:
+## 3. Directory Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+I have structured the folders and named the files to keep as much as I can to the Domain-Driven Design philosophy.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 4. Security Measures
 
-## Deploy on Vercel
+#### Pages
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To keep the directory structure as easy to follow as possible I have separated the 2 pages (item-list and [editId] which is a dynamic route page) into their respective directories and used css modules.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+📦pages
+┣ 📂api
+┃ ┣ 📜add-item.ts
+┃ ┣ 📜delete-item.ts
+┃ ┗ 📜update-item.ts
+┣ 📂item-list
+┃ ┣ 📜index.module.css
+┃ ┗ 📜index.tsx
+┣ 📂[editId]
+┃ ┣ 📜editItem.module.css
+┃ ┗ 📜index.tsx
+┣ 📜index.tsx
+┗ 📜_app.tsx
+
+#### Components
+
+Layout concerns like the main navigation and the pages layout are addressed in the layout folder, in keeping with convention. Small elements that were reused multiple times were extracted into the `elements` folder and the larger reusable form in its own folder.
+
+📦components
+┣ 📂elements
+┃ ┣ 📜FormButton.tsx
+┃ ┣ 📜FormDateTimePicker.tsx
+┃ ┣ 📜FormTextInput.tsx
+┃ ┣ 📜ItemCard.tsx
+┃ ┗ 📜ItemCheckbox.tsx
+┣ 📂form
+┃ ┗ 📜Form.tsx
+┗ 📂layout
+┃ ┣ 📜Layout.module.css
+┃ ┣ 📜Layout.tsx
+┃ ┗ 📜MainNav.tsx

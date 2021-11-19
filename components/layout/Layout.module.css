@@ -1,5 +1,7 @@
 .main {
-  margin: 3rem auto;
-  width: 90%;
-  max-width: 40rem;
+  min-height: 100vh;
+  /* flex-direction: column;
+  justify-content: center; */
+  margin: 0px auto;
+  width: 80%;
 }
