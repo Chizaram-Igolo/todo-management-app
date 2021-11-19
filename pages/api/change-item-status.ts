@@ -37,8 +37,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
 
       client.close();
 
-      console.log(result);
-
       // On successful insertion.
       res.status(201).json({ message: "Update succesful!" });
     } else {

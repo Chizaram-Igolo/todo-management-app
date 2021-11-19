@@ -5,13 +5,10 @@ import FormDateTimePicker from "../elements/FormDateTimePicker";
 import FormTextInput from "../elements/FormTextInput";
 import FormButton from "../elements/FormButton";
 
-import { ObjectId } from "mongodb";
-
 import Snackbar from "@mui/material/Snackbar";
 
 import Box from "@mui/material/Box";
 import { makeStyles } from "@mui/styles";
-import { todoItem } from "../../types/todoItem";
 
 export const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,9 +24,9 @@ export const useStyles = makeStyles((theme) => ({
 interface FormProps {
   operationType: string;
   defaultContent: string;
-  defaultDueDate: Date | null;
+  defaultDueDate: Date;
   // For updates
-  contentId: ObjectId | null;
+  contentId: string;
 }
 
 const Form: React.FC<FormProps> = (props) => {
@@ -63,11 +60,12 @@ const Form: React.FC<FormProps> = (props) => {
     setSubmitting(true);
 
     // Prepare the data body to be sent to the request.
-    let todoItemData: todoItem = {
+    let todoItemData = {
       content: enteredContent,
       dueDate: enteredDueDate,
       status: "unfinished",
-      _id: null,
+      // Placeholder value
+      _id: "1",
     };
 
     let url: string;
@@ -77,7 +75,7 @@ const Form: React.FC<FormProps> = (props) => {
     if (props.operationType === "update") {
       url = "/api/update-item";
       methodType = "PATCH";
-      todoItemData["_id"] = props.contentId;
+      todoItemData = { ...todoItemData, _id: props.contentId };
     } else {
       url = "/api/add-item";
       methodType = "POST";
@@ -122,7 +120,7 @@ const Form: React.FC<FormProps> = (props) => {
         <Box sx={{ mt: 2.2 }}>
           <FormButton
             label={props.operationType === "update" ? "Save" : "Add Item"}
-            color="primary"
+            typeOfBtn="priBtn"
             submitting={submitting}
             // Make sure compulsory field is not empty
             compulsoryFieldEmpty={!enteredContent ? true : false}

@@ -12,8 +12,6 @@ const FormDateTimePicker: React.FC<FormDateTimePickerProps> = ({
   value,
   changeHandler,
 }) => {
-  console.log(typeof value);
-
   return (
     <DateTimePicker
       renderInput={(props) => <TextField {...props} />}

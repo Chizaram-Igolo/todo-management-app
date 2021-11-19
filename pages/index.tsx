@@ -34,6 +34,7 @@ const Home: NextPage<HomeProps> = (props) => {
           operationType="add"
           defaultContent=""
           defaultDueDate={new Date()}
+          contentId={""}
         />
       </footer>
     </>

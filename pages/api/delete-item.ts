@@ -12,7 +12,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   if (req.method === "DELETE") {
     const data = req.body;
 
-    console.log(typeof data._id);
     const { client, todoitemsCollection } = await connect();
 
     if (client !== null && todoitemsCollection !== null) {

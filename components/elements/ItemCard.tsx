@@ -127,7 +127,6 @@ const ItemCard: React.FC<ItemCardProps> = ({
             <Button
               size="small"
               variant="outlined"
-              color="error"
               startIcon={<DeleteIcon />}
               onClick={() => deleteHandler()}
             >

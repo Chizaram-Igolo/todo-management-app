@@ -12,8 +12,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
   if (req.method === "PATCH") {
     const data = req.body;
 
-    console.log(data._id);
-
     const { client, todoitemsCollection } = await connect();
 
     if (client !== null && todoitemsCollection !== null) {

@@ -10,7 +10,6 @@ import React, { useState } from "react";
 
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 
 import Form from "../../components/form/Form";
@@ -51,9 +50,6 @@ const EditItemPage: NextPage<EditItemPageProps> = (props) => {
 
   let itemId = router.query.editId;
 
-  // const itemContent: string = data[Number(itemId)]["content"];
-  // const itemDueDate: string = items[Number(itemId)]["dueDate"];
-
   const [newItem, setNewItem] = useState("itemContent");
   const [submitting, setSubmitting] = useState(false);
 
@@ -82,7 +78,7 @@ const EditItemPage: NextPage<EditItemPageProps> = (props) => {
             <a>
               <FormButton
                 label="Cancel"
-                color="error"
+                typeOfBtn="errBtn"
                 submitting={false}
                 compulsoryFieldEmpty={false}
               />
@@ -104,7 +100,7 @@ const EditItemPage: NextPage<EditItemPageProps> = (props) => {
                   operationType="update"
                   defaultContent={props.itemData.content}
                   defaultDueDate={new Date(props.itemData.dueDate)}
-                  contentId={props.itemData._id}
+                  contentId={props.itemData._id.toString()}
                 />
               </Box>
             </CardContent>
@@ -120,7 +116,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   let selectedItem: todoItem;
 
-  const itemId: string | string[] | undefined = context.params?.editId;
+  const itemId: string = context.params?.editId as string;
 
   const { client, todoitemsCollection } = await connect();
 
@@ -128,8 +124,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     selectedItem = (await todoitemsCollection.findOne({
       _id: new ObjectId(itemId),
     })) as todoItem;
-
-    console.log(selectedItem);
 
     client.close();
 

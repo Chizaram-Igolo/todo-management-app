@@ -1,8 +1,8 @@
 import { ObjectId } from "mongodb";
 
 export type todoItem = {
-  _id: ObjectId | null;
+  _id: ObjectId;
   content: string;
-  dueDate: Date | null;
+  dueDate: Date;
   status: string;
 };
