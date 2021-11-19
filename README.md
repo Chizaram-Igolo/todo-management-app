@@ -23,6 +23,14 @@ Below is a check list which encapsulates the major technical requirements given 
 
 ## 2. How to Start the Application
 
+#### Locally
+
+After cloning repository
+
+```
+    yarn && yarn run dev
+```
+
 ## 3. Directory Structure
 
 I have structured the folders and named the files to keep as much as I can to the Domain-Driven Design philosophy.
