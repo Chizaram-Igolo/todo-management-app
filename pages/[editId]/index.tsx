@@ -33,8 +33,10 @@ export const useStyles = makeStyles((theme) => ({
   },
 
   parentFlexRight: {
-    display: "flex",
+    // display: "flex",
     marginLeft: "auto",
+    // justifyItems: "flex-end",
+    // float: "right",
   },
 }));
 
@@ -74,7 +76,7 @@ const EditItemPage: NextPage<EditItemPageProps> = (props) => {
       </Head>
 
       <main className={styles.main}>
-        <Box className={classes.parentFlexRight}>
+        <Box>
           <br />
           <Link href="/">
             <a>

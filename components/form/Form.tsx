@@ -38,6 +38,7 @@ const Form: React.FC<FormProps> = (props) => {
   const classes = useStyles();
 
   const [enteredContent, setEnteredContent] = useState(props.defaultContent);
+  const [error, setError] = useState(false);
   const [enteredDueDate, setEnteredDueDate] = useState<Date | null>(
     props.defaultDueDate
   );
@@ -52,6 +53,12 @@ const Form: React.FC<FormProps> = (props) => {
   let submitHandler: (event: React.FormEvent<HTMLFormElement>) => void;
 
   submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    // Mandatory text (content) input
+    if (!enteredContent) {
+      setError(true);
+      return;
+    }
+
     e.preventDefault();
     setSubmitting(true);
 
@@ -102,6 +109,7 @@ const Form: React.FC<FormProps> = (props) => {
         <Box className={classes.marginRight}>
           <FormTextInput
             value={enteredContent}
+            error={error}
             changeHandler={(e) => setEnteredContent(e.target.value)}
           />
         </Box>

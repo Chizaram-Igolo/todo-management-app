@@ -58,7 +58,7 @@ const ItemCard: React.FC<ItemCardProps> = ({
   const deleteHandler = async () => {
     const response = await fetch("/api/delete-item", {
       method: "DELETE",
-      body: JSON.stringify({ itemId: itemId }),
+      body: JSON.stringify({ _id: itemId }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -67,6 +67,18 @@ const ItemCard: React.FC<ItemCardProps> = ({
     if (response) {
       setSnackOpen(true);
     }
+
+    router.replace("/");
+  };
+
+  const changeItemStatusHandler = async () => {
+    const response = await fetch("/api/change-item-status", {
+      method: "PATCH",
+      body: JSON.stringify({ _id: itemId, itemStatus: itemStatus }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
     router.replace("/");
   };
@@ -80,7 +92,10 @@ const ItemCard: React.FC<ItemCardProps> = ({
       >
         <CardContent>
           <Box className={classes.parentFlexLeft}>
-            <ItemCheckbox isChecked={itemStatus === "done" ? true : false} />
+            <ItemCheckbox
+              isChecked={itemStatus === "done" ? true : false}
+              changeHandler={() => changeItemStatusHandler()}
+            />
             <Typography sx={{ mt: 1.3 }}>
               {itemStatus === "done" && (
                 <strong style={{ textDecoration: "line-through" }}>

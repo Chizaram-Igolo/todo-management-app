@@ -1,12 +1,16 @@
 ## Table of Contents
 
-1.  Checklist
+1.  Overview
 2.  How to Start the Application
 3.  Directory Structure
 4.  Security Measures
 5.
 
-## 1. Checklist
+## 1. Overview
+
+This project utilizes Next.js as well as Server Side Rendering to update the page on each request after building. I followed best practices in Next.js and TypeScript as much as possible such as typing every component and object using in the application. I also avoided the use of the "any" type.
+
+Below is a check list which encapsulates the requirements given to me for the assignment:
 
 :white_check_mark: Used Next.js with SSR
 
@@ -90,12 +94,14 @@ export type todoItem = {
 
 The snippet for connecting to the database is exported from the `connection.ts` file in the `utils` directory for reusability. This directory just like the one mentioned above is on the same level as the `pages` and `components` directories.
 
+```
 📦utils
 ┗ 📜connection.ts
+```
 
 ## 4. Security Measures
 
-- To prevent Clickjacking and MIME sniffing vulnerabilities, I have include HTTP response headers in `next.config.js` to deny other sources from being able to take advantage of these.
+- To prevent Clickjacking and MIME sniffing vulnerabilities, I have include HTTP response headers in `next.config.js` to deny other sources from being able to take advantage of these
 
 Denying MIME sniffing makes it harder to perform CSRF through malicious file upload.
 
