@@ -14,7 +14,8 @@ RUN npm run build
 # We keep some artifacts from build
 FROM node:14-buster-slim AS production
 ENV NODE_ENV production
-WORKDIR /todo
+WORKDIR /todo 
+COPY --from=build /app/next.config.js ./
 COPY --from=build /build/package*.json ./
 COPY --from=build /build/.next ./.next
 COPY --from=build /build/public ./public
