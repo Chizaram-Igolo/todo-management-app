@@ -26,7 +26,7 @@ Below is a check list which encapsulates the major technical requirements given 
 #### With Docker
 
 ```
-docker run -p 3000:3000 chizaram/todo
+docker run -dp 3000:3000 chizaram/todo
 ```
 
 and build with
