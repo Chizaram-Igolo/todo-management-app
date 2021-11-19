@@ -23,6 +23,18 @@ Below is a check list which encapsulates the major technical requirements given 
 
 ## 2. How to Start the Application
 
+#### With Docker
+
+```
+docker run -p 3000:3000 chizaram/todo
+```
+
+and build with
+
+```
+docker build -t todo .
+```
+
 #### Locally
 
 After cloning repository
@@ -31,8 +43,6 @@ After cloning repository
 cd todo-management-app
 npm install && npm run dev
 ```
-
-#### With Docker
 
 ## 3. Directory Structure
 
@@ -111,7 +121,7 @@ The snippet for connecting to the database is exported from the `connection.ts` 
 
 ## 4. Security Measures
 
-- To prevent XSS, CSRF, Clickjacking and MIME sniffing vulnerabilities, I have include HTTP response headers in `next.config.js` to deny other sources from being able to take advantage of these
+- To prevent XSS, CSRF, Clickjacking and MIME sniffing vulnerabilities, I have include HTTP response headers in `next.config.js` to deny other sources from being able to take advantage of these.
 
 Denying MIME sniffing makes it harder to perform CSRF through malicious file upload.
 
