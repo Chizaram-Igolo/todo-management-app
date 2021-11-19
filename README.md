@@ -46,7 +46,7 @@ npm install && npm run dev
 
 ## 3. Directory Structure
 
-I have structured the folders and named the files to keep as much as I can to the Domain-Driven Design philosophy.
+Related parts have been group together to make it easier to know at a first glance what is going on.
 
 #### Pages
 
@@ -56,18 +56,19 @@ The API routes for performing CRUD operations can be seen here as well.
 
 ```
 📦pages
-┣ 📂api
-┃ ┣ 📜add-item.ts
-┃ ┣ 📜delete-item.ts
-┃ ┗ 📜update-item.ts
-┣ 📂item-list
-┃ ┣ 📜index.module.css
-┃ ┗ 📜index.tsx
-┣ 📂[editId]
-┃ ┣ 📜editItem.module.css
-┃ ┗ 📜index.tsx
-┣ 📜index.tsx
-┗ 📜_app.tsx
+ ┣ 📂api
+ ┃ ┣ 📜add-item.ts
+ ┃ ┣ 📜change-item-status.ts
+ ┃ ┣ 📜delete-item.ts
+ ┃ ┗ 📜update-item.ts
+ ┣ 📂item-list
+ ┃ ┣ 📜index.module.css
+ ┃ ┗ 📜index.tsx
+ ┣ 📂[editId]
+ ┃ ┣ 📜editItem.module.css
+ ┃ ┗ 📜index.tsx
+ ┣ 📜index.tsx
+ ┗ 📜_app.tsx
 ```
 
 #### Components
