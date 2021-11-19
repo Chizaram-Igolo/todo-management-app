@@ -29,6 +29,7 @@ I have structured the folders and named the files to keep as much as I can to th
 
 To keep the directory structure as easy to follow as possible I have separated the 2 pages (item-list and [editId] which is a dynamic route page) into their respective directories and used css modules.
 
+```
 📦pages
 ┣ 📂api
 ┃ ┣ 📜add-item.ts
@@ -42,11 +43,13 @@ To keep the directory structure as easy to follow as possible I have separated t
 ┃ ┗ 📜index.tsx
 ┣ 📜index.tsx
 ┗ 📜_app.tsx
+```
 
 #### Components
 
 Layout concerns like the main navigation and the pages layout are addressed in the layout folder, in keeping with convention. Small elements that were reused multiple times were extracted into the `elements` folder and the larger reusable form in its own folder.
 
+```
 📦components
 ┣ 📂elements
 ┃ ┣ 📜FormButton.tsx
@@ -60,3 +63,4 @@ Layout concerns like the main navigation and the pages layout are addressed in t
 ┃ ┣ 📜Layout.module.css
 ┃ ┣ 📜Layout.tsx
 ┃ ┗ 📜MainNav.tsx
+```
