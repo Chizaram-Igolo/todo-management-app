@@ -4,13 +4,12 @@
 2.  How to Start the Application
 3.  Directory Structure
 4.  Security Measures
-5.
 
 ## 1. Overview
 
 This project utilizes Next.js as well as Server Side Rendering to update the page on each request after building. I followed best practices in Next.js and TypeScript as much as possible such as typing every component and object using in the application. I also avoided the use of the "any" type.
 
-Below is a check list which encapsulates the requirements given to me for the assignment:
+Below is a check list which encapsulates the major technical requirements given to me for the assignment:
 
 :white_check_mark: Used Next.js with SSR
 
@@ -20,7 +19,7 @@ Below is a check list which encapsulates the requirements given to me for the as
 
 :white_check_mark: Used Docker node:14-buster-slim image to deploy the app
 
-:white_check_mark: Used React Context
+:white_check_mark: Implemented with Security in Mind
 
 ## 2. How to Start the Application
 
@@ -101,8 +100,8 @@ The snippet for connecting to the database is exported from the `connection.ts` 
 
 ## 4. Security Measures
 
-- To prevent Clickjacking and MIME sniffing vulnerabilities, I have include HTTP response headers in `next.config.js` to deny other sources from being able to take advantage of these
+- To prevent XSS, CSRF, Clickjacking and MIME sniffing vulnerabilities, I have include HTTP response headers in `next.config.js` to deny other sources from being able to take advantage of these
 
 Denying MIME sniffing makes it harder to perform CSRF through malicious file upload.
 
-- The database cluster that this project utilizes is built on AWS infrastructure using MongoDB Atlas.
+- The database that this project utilizes is built on AWS cloud infrastructure using MongoDB Atlas. MongoDB Atlas makes managing many aspects of a database, such as administration and security quite easy. The advantage of using this database environment is that the infrastructure is very secure from the get-go as these are big cloud and database companies that offer security from threats like DDOS and XSS attacks along with their offerings guaranteeing, if used responsibly, a high level of safety and reliability.

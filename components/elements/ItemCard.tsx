@@ -118,9 +118,15 @@ const ItemCard: React.FC<ItemCardProps> = ({
         <div className={classes.parentFlexRight}>
           <CardActions sx={{ mt: -1.4, fontSize: "14px" }}>
             <Link href={`${itemId}`}>
-              <Button size="small" variant="outlined" startIcon={<EditIcon />}>
-                Edit
-              </Button>
+              <a>
+                <Button
+                  size="small"
+                  variant="outlined"
+                  startIcon={<EditIcon />}
+                >
+                  Edit
+                </Button>
+              </a>
             </Link>
           </CardActions>
           <CardActions sx={{ mt: -1.4, fontSize: "14px" }}>

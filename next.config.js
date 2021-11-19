@@ -1,4 +1,27 @@
 /** @type {import('next').NextConfig} */
+
+const responseHeaders = [
+  {
+    // Anti Clickjacking response header
+    key: "X-Frame-Options",
+    value: "DENY",
+  },
+  {
+    // Anti-XSS and Anti-CRSF response header
+    key: "X-Content-Type-Options",
+    value: "nosniff",
+  },
+  {
+    // Anti-XSS response headers
+    key: "Content-Security-Policy",
+    value: `default-src 'self'`,
+  },
+  {
+    key: "X-XSS-Protection",
+    value: "1; mode=block",
+  },
+];
+
 module.exports = {
   reactStrictMode: true,
 
@@ -6,16 +29,11 @@ module.exports = {
     return [
       {
         source: "/",
-        headers: [
-          {
-            key: "X-Frame-Options",
-            value: "DENY",
-          },
-          {
-            key: "X-Content-Type-Options",
-            value: "nosniff",
-          },
-        ],
+        headers: responseHeaders,
+      },
+      {
+        source: "/:path*",
+        headers: responseHeaders,
       },
     ];
   },
