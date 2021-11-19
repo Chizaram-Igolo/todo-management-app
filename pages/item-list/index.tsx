@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import React, { useState } from "react";
+import React from "react";
 
 import ItemCard from "../../components/elements/ItemCard";
 import { todoItem } from "../../types/todoItem";

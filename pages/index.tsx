@@ -52,20 +52,35 @@ export const getServerSideProps: GetServerSideProps = async () => {
     items = (await todoitemsCollection.find().toArray()) as todoItem[];
 
     client.close();
+
+    return {
+      props: {
+        items: items.map((item) => ({
+          content: item.content,
+          dueDate: item.dueDate,
+          status: item.status,
+          _id: item._id.toString(),
+        })),
+      },
+    };
   } else {
     console.log(`Couldn't connect to the database`);
-  }
 
-  return {
-    props: {
-      items: items.map((item) => ({
-        content: item.content,
-        dueDate: item.dueDate,
-        status: item.status,
-        _id: item._id.toString(),
-      })),
-    },
-  };
+    // IF FAILURE OCCURS
+    let fallBackItem = [
+      {
+        content: "An Error occurred while trying to connect. Nothing to show",
+        dueDate: new Date(),
+        status: "",
+        _id: "1",
+      },
+    ];
+    return {
+      props: {
+        items: fallBackItem,
+      },
+    };
+  }
 };
 
 export default Home;
