@@ -18,10 +18,8 @@ ENV NODE_ENV production
 
 COPY --from=builder /todo/next.config.js ./  
 COPY --from=builder /todo/public ./public
-COPY --from=builder --chown=nextjs:nodejs /todo/.next ./.next 
 COPY --from=builder /todo/node_modules ./node_modules
 COPY --from=builder /todo/package.json ./package.json
-
 
 EXPOSE 3000
 
