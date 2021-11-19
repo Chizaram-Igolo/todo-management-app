@@ -32,6 +32,8 @@ cd todo-management-app
 npm install && npm run dev
 ```
 
+#### With Docker
+
 ## 3. Directory Structure
 
 I have structured the folders and named the files to keep as much as I can to the Domain-Driven Design philosophy.

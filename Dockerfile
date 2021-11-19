@@ -1,27 +1,26 @@
-FROM node:14-buster-slim as deps
+FROM node:14-buster-slim as base
 WORKDIR /todo
-COPY package.json yarn.lock ./
+COPY package.json ./
 RUN npm install
+COPY . .
 
 # Linux + Node + Source + Project dependencies + build assets
-FROM node:14-buster-slim AS builder
-WORKDIR /todo
-COPY . .
-COPY --from=deps /todo/node_modules ./node_modules
+FROM base AS build
+ENV NODE_ENV=production
+WORKDIR /build
+COPY --from=base /todo ./
 RUN npm run build
 
 # We keep some artifacts from build
-FROM node:14-buster-slim AS runner
-WORKDIR /todo 
-
-ENV NODE_ENV production 
-
-COPY --from=builder /todo/next.config.js ./  
-COPY --from=builder /todo/public ./public
-COPY --from=builder /todo/node_modules ./node_modules
-COPY --from=builder /todo/package.json ./package.json
+FROM node:14-buster-slim AS production
+ENV NODE_ENV=production
+WORKDIR /todo
+COPY --from=build /build/package*.json ./
+COPY --from=build /build/.next ./.next
+COPY --from=build /build/public ./public
+RUN npm install next
 
 EXPOSE 3000
-
 CMD npm run start
+
 
