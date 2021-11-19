@@ -28,7 +28,8 @@ Below is a check list which encapsulates the major technical requirements given 
 After cloning repository
 
 ```
-    yarn && yarn run dev
+cd todo-management-app
+npm install && npm run dev
 ```
 
 ## 3. Directory Structure

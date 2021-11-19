@@ -1,14 +1,14 @@
 FROM node:14-buster-slim as deps
 WORKDIR /todo
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+RUN npm install
 
 # Linux + Node + Source + Project dependencies + build assets
 FROM node:14-buster-slim AS builder
 WORKDIR /todo
 COPY . .
 COPY --from=deps /todo/node_modules ./node_modules
-RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
+RUN npm run build
 
 # We keep some artifacts from build
 FROM node:14-buster-slim AS runner
