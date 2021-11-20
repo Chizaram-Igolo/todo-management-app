@@ -7,7 +7,7 @@
 
 ## 1. Overview
 
-This project utilizes Next.js as well as Server Side Rendering to update the page on each request after building. I followed best practices in Next.js and TypeScript as much as possible such as typing every component and objects used in the application. I also avoided the use of the "any" type.
+This project utilizes Next.js as well as Server Side Rendering to update the page on each request after building. I followed best practices in Next.js and TypeScript as much as possible, such as typing every component and objects used in the application. I also avoided the use of the "any" type.
 
 Below is a check list which encapsulates the major technical requirements given to me for the assignment:
 
